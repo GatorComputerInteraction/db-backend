@@ -17,9 +17,9 @@ namespace WebAPI.Services
 
     public sealed class StudentService : IStudentService
     {
-        private readonly MariaDbContext _dbContext;
+        private readonly DbContexts.NpgDbContext _dbContext;
 
-        public StudentService(MariaDbContext dbContext)
+        public StudentService(DbContexts.NpgDbContext dbContext)
         {
             _dbContext = dbContext;
         }

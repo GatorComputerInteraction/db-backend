@@ -5,8 +5,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
-using System;
 using WebAPI.DbContexts;
 using WebAPI.Services;
 
@@ -24,12 +22,9 @@ namespace WebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContextPool<MariaDbContext>(options => options
-                .UseMySql(
-                    Configuration.GetConnectionString("MariaDbConnectionString"),
-                    mySqlOptions => mySqlOptions.ServerVersion(new Version(10, 5, 4), ServerType.MariaDb)
-                )
-            );
+            services.AddDbContext<NpgDbContext>(options =>
+            options.UseNpgsql(Configuration.GetValue<string>("DbConnectionString")));
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

@@ -3,9 +3,9 @@ using WebAPI.Models;
 
 namespace WebAPI.DbContexts
 {
-    public partial class MariaDbContext : DbContext
+    public partial class NpgDbContext : DbContext
     {
-        public MariaDbContext(DbContextOptions<MariaDbContext> options)
+        public NpgDbContext(DbContextOptions<NpgDbContext> options)
             : base(options)
         {
         }
