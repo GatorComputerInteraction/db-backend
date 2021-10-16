@@ -9,28 +9,29 @@ namespace WebAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class StudentController : ControllerBase
+    public class StudentScheduleController : ControllerBase
     {
 
-        private readonly ILogger<StudentController> _logger;
-        private readonly IStudentService _service;
+        private readonly ILogger<StudentScheduleController> _logger;
+        private readonly IStudentScheduleService _service;
 
-        public StudentController(ILogger<StudentController> logger, IStudentService service)
+        public StudentScheduleController(ILogger<StudentScheduleController> logger, IStudentScheduleService service)
         {
             _service = service;
             _logger = logger;
         }
 
         [HttpGet]
-        public async Task<IEnumerable<StudentModel>> GetAll()
+        public async Task<IEnumerable<StudentScheduleModel>> GetAll()
         {
             return await _service.GetAll();
         }
 
-        [HttpGet("{id}", Name = "GetByStudentId")]
-        public async Task<ActionResult<StudentModel>> GetById(int id)
+        // <api-root-path>/degreecourse/id?ufId=123&instanceId=123
+        [HttpGet("{id}", Name = "GetByUfAndInstanceIds")]
+        public async Task<ActionResult<StudentScheduleModel>> GetByIds(int ufId, int instanceId)
         {
-            var result = await _service.GetById(id);
+            var result = await _service.GetById(ufId, instanceId);
             if (result != default)
                 return Ok(result);
             else
@@ -38,9 +39,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<StudentModel>> Insert(StudentModel dto)
+        public async Task<ActionResult<StudentScheduleModel>> Insert(StudentScheduleModel dto)
         {
-            if (dto.UfId < 0)
+            if (dto.InstanceId < 0 || dto.UfId < 0)
             {
                 return BadRequest("UF Id cannot be set for insert action.");
             }
@@ -53,9 +54,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPut]
-        public async Task<ActionResult<StudentModel>> Update(StudentModel dto)
+        public async Task<ActionResult<StudentScheduleModel>> Update(StudentScheduleModel dto)
         {
-            if (dto.UfId < 0)
+            if (dto.InstanceId < 0 || dto.UfId < 0)
             {
                 return BadRequest("Id should be set for insert action.");
             }
@@ -67,10 +68,12 @@ namespace WebAPI.Controllers
                 return NotFound();
         }
 
+        // <api-root-path>/degreecourse/<id>?ufId=123&instanceId=123
+
         [HttpDelete("{id}")]
-        public async Task<ActionResult<StudentModel>> Delete(int id)
+        public async Task<ActionResult<StudentScheduleModel>> Delete(int ufId, int instanceId)
         {
-            var result = await _service.Delete(id);
+            var result = await _service.Delete(ufId, instanceId);
             if (result > 0)
                 return NoContent();
             else

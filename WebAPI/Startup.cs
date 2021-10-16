@@ -33,6 +33,14 @@ namespace WebAPI
 
             // configure DI for application services
             services.AddScoped<IStudentService, StudentService>();
+            services.AddScoped<ICourseService, CourseService>();
+            services.AddScoped<IDegreeService, DegreeService>();
+            services.AddScoped<IPeriodService, PeriodService>();
+            services.AddScoped<ITimeslotService, TimeslotService>();
+            services.AddScoped<IDegreeCourseService, DegreeCourseService>();
+            services.AddScoped<IStudentCompletedCourseService, StudentCompletedCourseService>();
+            services.AddScoped<ICourseInstanceService, CourseInstanceService>();
+            services.AddScoped<IStudentScheduleService, StudentScheduleService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
