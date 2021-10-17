@@ -28,7 +28,7 @@ namespace WebAPI.Services
         {
             try
             {
-                _dbContext.Degrees.Remove(
+                _dbContext.Degree.Remove(
                     new DegreeModel
                     {
                         DegreeId = id
@@ -45,12 +45,12 @@ namespace WebAPI.Services
 
         public async Task<IEnumerable<DegreeModel>> GetAll()
         {
-            return await _dbContext.Degrees.ToListAsync();
+            return await _dbContext.Degree.ToListAsync();
         }
 
         public async Task<DegreeModel> GetById(int id)
         {
-            return await _dbContext.Degrees.FirstOrDefaultAsync(x => x.DegreeId == id);
+            return await _dbContext.Degree.FirstOrDefaultAsync(x => x.DegreeId == id);
         }
 
         public async Task<int> Insert(DegreeModel degree)

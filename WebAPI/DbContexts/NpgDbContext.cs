@@ -23,14 +23,14 @@ namespace WebAPI.DbContexts
                 .HasKey(nameof(StudentScheduleModel.UfId), nameof(StudentScheduleModel.InstanceId));
         }
 
-        public virtual DbSet<StudentModel> Students { get; set; }
-        public virtual DbSet<CourseModel> Courses { get; set; }
-        public virtual DbSet<DegreeModel> Degrees { get; set; }
-        public virtual DbSet<PeriodModel> Periods { get; set; }
-        public virtual DbSet<TimeslotModel> Timeslots { get; set; }
+        public virtual DbSet<StudentModel> Student { get; set; }
+        public virtual DbSet<CourseModel> Course { get; set; }
+        public virtual DbSet<DegreeModel> Degree { get; set; }
+        public virtual DbSet<PeriodModel> Period { get; set; }
+        public virtual DbSet<TimeslotModel> Timeslot { get; set; }
         public virtual DbSet<DegreeCourseModel> DegreeCourses { get; set; }
         public virtual DbSet<StudentCompletedCourseModel> StudentCompletedCourses { get; set; }
-        public virtual DbSet<CourseInstanceModel> CourseInstances { get; set; }
-        public virtual DbSet<StudentScheduleModel> StudentSchedules { get; set; }
+        public virtual DbSet<CourseInstanceModel> CourseInstance { get; set; }
+        public virtual DbSet<StudentScheduleModel> StudentSchedule { get; set; }
     }
 }

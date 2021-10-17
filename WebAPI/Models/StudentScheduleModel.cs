@@ -2,14 +2,15 @@
 
 namespace WebAPI.Models
 {
+    [Table("studentschedule")]
     public class StudentScheduleModel
     {
         [ForeignKey("StudentModel")]
-        [Column(Order = 1)]
+        [Column("ufid", Order = 1)]
         public int UfId { get; set; }
 
         [ForeignKey("CourseInstanceModel")]
-        [Column(Order = 1)]
+        [Column("instanceid", Order = 1)]
         public int InstanceId { get; set; }
 
         public StudentModel StudentModel { get; set; }

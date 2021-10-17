@@ -28,7 +28,7 @@ namespace WebAPI.Services
         {
             try
             {
-                _dbContext.Periods.Remove(
+                _dbContext.Period.Remove(
                     new PeriodModel
                     {
                         PeriodId = id
@@ -45,12 +45,12 @@ namespace WebAPI.Services
 
         public async Task<IEnumerable<PeriodModel>> GetAll()
         {
-            return await _dbContext.Periods.ToListAsync();
+            return await _dbContext.Period.ToListAsync();
         }
 
         public async Task<PeriodModel> GetById(int id)
         {
-            return await _dbContext.Periods.FirstOrDefaultAsync(x => x.PeriodId == id);
+            return await _dbContext.Period.FirstOrDefaultAsync(x => x.PeriodId == id);
         }
 
         public async Task<int> Insert(PeriodModel period)

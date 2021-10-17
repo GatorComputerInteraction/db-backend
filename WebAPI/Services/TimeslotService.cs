@@ -28,7 +28,7 @@ namespace WebAPI.Services
         {
             try
             {
-                _dbContext.Timeslots.Remove(
+                _dbContext.Timeslot.Remove(
                     new TimeslotModel
                     {
                         SlotId = id
@@ -45,12 +45,12 @@ namespace WebAPI.Services
 
         public async Task<IEnumerable<TimeslotModel>> GetAll()
         {
-            return await _dbContext.Timeslots.ToListAsync();
+            return await _dbContext.Timeslot.ToListAsync();
         }
 
         public async Task<TimeslotModel> GetById(int id)
         {
-            return await _dbContext.Timeslots.FirstOrDefaultAsync(x => x.SlotId == id);
+            return await _dbContext.Timeslot.FirstOrDefaultAsync(x => x.SlotId == id);
         }
 
         public async Task<int> Insert(TimeslotModel timeslot)

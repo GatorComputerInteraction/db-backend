@@ -11,8 +11,8 @@ namespace WebAPI.Services
         public Task<int> Delete(int id);
         public Task<IEnumerable<CourseModel>> GetAll();
         public Task<CourseModel> GetById(int id);
-        public Task<int> Insert(CourseModel course);
-        public Task<int> Update(CourseModel course);
+        public Task<int> Insert(CourseModel Course);
+        public Task<int> Update(CourseModel Course);
     }
 
     public sealed class CourseService : ICourseService
@@ -28,7 +28,7 @@ namespace WebAPI.Services
         {
             try
             {
-                _dbContext.Courses.Remove(
+                _dbContext.Course.Remove(
                     new CourseModel
                     {
                         CourseId = id
@@ -45,25 +45,25 @@ namespace WebAPI.Services
 
         public async Task<IEnumerable<CourseModel>> GetAll()
         {
-            return await _dbContext.Courses.ToListAsync();
+            return await _dbContext.Course.ToListAsync();
         }
 
         public async Task<CourseModel> GetById(int id)
         {
-            return await _dbContext.Courses.FirstOrDefaultAsync(x => x.CourseId == id);
+            return await _dbContext.Course.FirstOrDefaultAsync(x => x.CourseId == id);
         }
 
-        public async Task<int> Insert(CourseModel course)
+        public async Task<int> Insert(CourseModel Course)
         {
-            _dbContext.Add(course);
+            _dbContext.Add(Course);
             return await _dbContext.SaveChangesAsync();
         }
 
-        public async Task<int> Update(CourseModel course)
+        public async Task<int> Update(CourseModel Course)
         {
             try
             {
-                _dbContext.Update(course);
+                _dbContext.Update(Course);
                 return await _dbContext.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)

@@ -2,17 +2,19 @@
 
 namespace WebAPI.Models
 {
+    [Table("degreecourses")]
     public class DegreeCourseModel
     {
         [ForeignKey("DegreeModel")]
-        [Column(Order = 1)]
+        [Column("degreeid", Order = 1)]
         public int DegreeId { get; set; }
 
         [ForeignKey("CourseModel")]
-        [Column(Order = 1)]
+        [Column("courseid", Order = 1)]
         public int CourseId { get; set; }
 
         public DegreeModel DegreeModel { get; set; }
+
         public CourseModel CourseModel { get; set; }
     }
 }

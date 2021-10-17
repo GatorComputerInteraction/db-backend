@@ -3,22 +3,25 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebAPI.Models
 {
+    [Table("student")]
     public class StudentModel
     {
         [Key]
-        [Column(Order = 1)]
+        [Column("ufid", Order = 1)]
         public int UfId { get; set; }
 
         [Required]
         [MaxLength(100)]
+        [Column("firstname")]
         public string FirstName { get; set; }
 
         [Required]
         [MaxLength(100)]
+        [Column("lastname")]
         public string LastName { get; set; }
 
         [ForeignKey("DegreeModel")]
-        [Column(Order = 1)]
+        [Column("degreeid", Order = 1)]
         public int DegreeId { get; set; }
 
         public DegreeModel DegreeModel { get; set; }

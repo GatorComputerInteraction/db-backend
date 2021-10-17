@@ -28,7 +28,7 @@ namespace WebAPI.Services
         {
             try
             {
-                _dbContext.StudentSchedules.Remove(
+                _dbContext.StudentSchedule.Remove(
                     new StudentScheduleModel
                     {
                         UfId = id1,
@@ -46,12 +46,12 @@ namespace WebAPI.Services
 
         public async Task<IEnumerable<StudentScheduleModel>> GetAll()
         {
-            return await _dbContext.StudentSchedules.ToListAsync();
+            return await _dbContext.StudentSchedule.ToListAsync();
         }
 
         public async Task<StudentScheduleModel> GetById(int id1, int id2)
         {
-            return await _dbContext.StudentSchedules.FirstOrDefaultAsync(x => x.UfId == id1 && x.InstanceId == id2);
+            return await _dbContext.StudentSchedule.FirstOrDefaultAsync(x => x.UfId == id1 && x.InstanceId == id2);
         }
 
         public async Task<int> Insert(StudentScheduleModel studentSchedule)

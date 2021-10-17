@@ -28,7 +28,7 @@ namespace WebAPI.Services
         {
             try
             {
-                _dbContext.CourseInstances.Remove(
+                _dbContext.CourseInstance.Remove(
                     new CourseInstanceModel
                     {
                         InstanceId = id
@@ -45,12 +45,12 @@ namespace WebAPI.Services
 
         public async Task<IEnumerable<CourseInstanceModel>> GetAll()
         {
-            return await _dbContext.CourseInstances.ToListAsync();
+            return await _dbContext.CourseInstance.ToListAsync();
         }
 
         public async Task<CourseInstanceModel> GetById(int id)
         {
-            return await _dbContext.CourseInstances.FirstOrDefaultAsync(x => x.InstanceId == id);
+            return await _dbContext.CourseInstance.FirstOrDefaultAsync(x => x.InstanceId == id);
         }
 
         public async Task<int> Insert(CourseInstanceModel courseInstance)

@@ -4,16 +4,19 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebAPI.Models
 {
+    [Table("period")]
     public class PeriodModel
     {
         [Key]
-        [Column(Order = 1)]
+        [Column("periodid", Order = 1)]
         public int PeriodId { get; set; }
 
         [Required]
-        public DateTime StartTime { get; set; }
+        [Column("starttime")]
+        public TimeSpan StartTime { get; set; }
 
         [Required]
-        public DateTime EndTime { get; set; }
+        [Column("endtime")]
+        public TimeSpan EndTime { get; set; }
     }
 }

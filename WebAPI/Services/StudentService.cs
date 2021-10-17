@@ -28,7 +28,7 @@ namespace WebAPI.Services
         {
             try
             {
-                _dbContext.Students.Remove(
+                _dbContext.Student.Remove(
                     new StudentModel
                     {
                         UfId = id
@@ -45,12 +45,12 @@ namespace WebAPI.Services
 
         public async Task<IEnumerable<StudentModel>> GetAll()
         {
-            return await _dbContext.Students.ToListAsync();
+            return await _dbContext.Student.ToListAsync();
         }
 
         public async Task<StudentModel> GetById(int id)
         {
-            return await _dbContext.Students.FirstOrDefaultAsync(x => x.UfId == id);
+            return await _dbContext.Student.FirstOrDefaultAsync(x => x.UfId == id);
         }
 
         public async Task<int> Insert(StudentModel student)
