@@ -2,3 +2,4 @@
 Dockerfile
 readme.md
 images/
+WebAPI/secrets.json
