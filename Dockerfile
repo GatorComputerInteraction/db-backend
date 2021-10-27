@@ -10,4 +10,4 @@ FROM mcr.microsoft.com/dotnet/aspnet:3.1-alpine
 WORKDIR /app
 COPY --from=builder /app .
 
-CMD ["dotnet", "WebAPI.dll"]
+CMD ["dotnet", "WebAPI.dll", "--urls", "http://0.0.0.0:8080"]
