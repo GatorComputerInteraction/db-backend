@@ -57,6 +57,9 @@ namespace WebAPI
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Cen4721 v1"));
+            } else {
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Cen4721 v1"));
             }
 
             //app.UseHttpsRedirection();
