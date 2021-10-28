@@ -7,6 +7,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using WebAPI.DbContexts;
 using WebAPI.Services;
+using System;
 
 namespace WebAPI
 {
@@ -22,8 +23,13 @@ namespace WebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<NpgDbContext>(options =>
-            options.UseNpgsql(Configuration.GetValue<string>("DbConnectionString")));
+            if (Configuration.GetValue<string>("DbConnectionString") != null) {
+                services.AddDbContext<NpgDbContext>(options =>
+                    options.UseNpgsql(Configuration.GetValue<string>("DbConnectionString")));
+            } else {
+                services.AddDbContext<NpgDbContext>(options =>
+                    options.UseNpgsql(Environment.GetEnvironmentVariable("CONN_STRING")));
+            }
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -50,6 +56,9 @@ namespace WebAPI
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Cen4721 v1"));
+            } else {
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Cen4721 v1"));
             }
