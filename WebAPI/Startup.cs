@@ -13,6 +13,8 @@ namespace WebAPI
 {
     public class Startup
     {
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -23,6 +25,17 @@ namespace WebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // add cors
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: MyAllowSpecificOrigins,
+                  builder =>
+                  {
+                      builder.WithOrigins("http://localhost:8080");
+                  });
+            });
+
+            // add db connection
             if (Configuration.GetValue<string>("DbConnectionString") != null) {
                 services.AddDbContext<NpgDbContext>(options =>
                     options.UseNpgsql(Configuration.GetValue<string>("DbConnectionString")));
@@ -31,7 +44,10 @@ namespace WebAPI
                     options.UseNpgsql(Environment.GetEnvironmentVariable("CONN_STRING")));
             }
 
+            // add controllers
             services.AddControllers();
+
+            // add swagger
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Cen4721", Version = "v1" });
@@ -66,6 +82,9 @@ namespace WebAPI
             //app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            // use cors
+            app.UseCors(MyAllowSpecificOrigins);
 
             app.UseAuthorization();
 
