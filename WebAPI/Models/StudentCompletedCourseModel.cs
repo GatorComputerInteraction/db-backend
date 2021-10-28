@@ -13,8 +13,8 @@ namespace WebAPI.Models
         [Column("courseid", Order = 1)]
         public int CourseId { get; set; }
 
-        public StudentModel StudentModel { get; set; }
+        private StudentModel StudentModel { get; set; }
 
-        public CourseModel CourseModel { get; set; }
+        private CourseModel CourseModel { get; set; }
     }
 }

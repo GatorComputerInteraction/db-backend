@@ -41,6 +41,7 @@ namespace WebAPI
             services.AddScoped<IStudentCompletedCourseService, StudentCompletedCourseService>();
             services.AddScoped<ICourseInstanceService, CourseInstanceService>();
             services.AddScoped<IStudentScheduleService, StudentScheduleService>();
+            services.AddScoped<IRequirementTypeService, RequirementTypeService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,7 +54,7 @@ namespace WebAPI
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Cen4721 v1"));
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
 

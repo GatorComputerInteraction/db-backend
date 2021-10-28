@@ -24,6 +24,6 @@ namespace WebAPI.Models
         [Column("degreeid", Order = 1)]
         public int DegreeId { get; set; }
 
-        public DegreeModel DegreeModel { get; set; }
+        private DegreeModel DegreeModel { get; set; }
     }
 }

@@ -32,5 +32,6 @@ namespace WebAPI.DbContexts
         public virtual DbSet<StudentCompletedCourseModel> StudentCompletedCourses { get; set; }
         public virtual DbSet<CourseInstanceModel> CourseInstance { get; set; }
         public virtual DbSet<StudentScheduleModel> StudentSchedule { get; set; }
+        public virtual DbSet<RequirementTypeModel> RequirementType { get; set; }
     }
 }

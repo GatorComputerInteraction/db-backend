@@ -27,12 +27,12 @@ namespace WebAPI.Models
         public int? PeriodId3 { get; set; }
 
         [ForeignKey("PeriodId1")]
-        public PeriodModel PeriodMode1l { get; set; }
+        private PeriodModel PeriodMode1l { get; set; }
 
         [ForeignKey("PeriodId2")]
-        public PeriodModel PeriodModel2 { get; set; }
+        private PeriodModel PeriodModel2 { get; set; }
 
         [ForeignKey("PeriodId3")]
-        public PeriodModel PeriodModel3 { get; set; }
+        private PeriodModel PeriodModel3 { get; set; }
     }
 }

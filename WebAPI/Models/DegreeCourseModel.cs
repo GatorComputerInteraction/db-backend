@@ -13,8 +13,14 @@ namespace WebAPI.Models
         [Column("courseid", Order = 1)]
         public int CourseId { get; set; }
 
-        public DegreeModel DegreeModel { get; set; }
+        [ForeignKey("RequirementTypeModel")]
+        [Column("requirementtype", Order = 1)]
+        public int RequirementType { get; set; }
 
-        public CourseModel CourseModel { get; set; }
+        private DegreeModel DegreeModel { get; set; }
+
+        private CourseModel CourseModel { get; set; }
+
+        private RequirementTypeModel RequirementTypeModel { get; set; }
     }
 }

@@ -27,8 +27,8 @@ namespace WebAPI.Models
         [Column("slotid", Order = 1)]
         public int SlotId { get; set; }
 
-        public CourseModel CourseModel { get; set; }
+        private CourseModel CourseModel { get; set; }
 
-        public TimeslotModel TimeslotModel { get; set; }
+        private TimeslotModel TimeslotModel { get; set; }
     }
 }
