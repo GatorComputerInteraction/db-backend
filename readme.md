@@ -13,5 +13,5 @@
     &nbsp;&nbsp;&nbsp;&nbsp;`"DbConnectionString": "Server=???;Database=???;User Id=???;Password=???;Port=???"`\
     `}`
 
-    - Note that DbConnectionString's value's fields **MUST** be filled out properly - the actual string will be sent in Slack by Allison.
+    - Note that DbConnectionString's value's fields **MUST** be filled out properly - the actual string is pinned to the #general channel in Slack by Chris.
 3. If you run the application in IIS Express, you should be able to test the different API routes, which use the PostGreSQL DB
