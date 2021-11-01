@@ -134,7 +134,7 @@ DocProject/Help/*.hhp
 DocProject/Help/Html2
 DocProject/Help/html
 
-# Click-Once directory
+5B# Click-Once directory
 publish/
 
 # Publish Web Output
@@ -252,3 +252,4 @@ paket-files/
 *.sln.iml
 
 secrets.json
+*.Development.json
