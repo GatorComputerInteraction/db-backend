@@ -37,8 +37,8 @@ namespace WebAPI.Controllers
                 return NotFound();
         }
 
-        [HttpGet("{semester}/{year}", Name ="GetBySemesterYear")]
-        public async Task<ActionResult<CourseInstanceModel>> GetBySemesterYear(string semester, int year)
+        [HttpGet("{year}/{semester}", Name ="GetBySemesterYear")]
+        public async Task<ActionResult<CourseInstanceModel>> GetBySemesterYear(int year, string semester)
         {
             var result = await _service.GetBySemesterYear(semester, year);
             if (result != default)
