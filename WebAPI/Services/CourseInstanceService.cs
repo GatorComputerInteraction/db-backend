@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using WebAPI.DbContexts;
+using System.Linq;
 using WebAPI.Models;
 
 namespace WebAPI.Services
@@ -11,6 +11,7 @@ namespace WebAPI.Services
         public Task<int> Delete(int id);
         public Task<IEnumerable<CourseInstanceModel>> GetAll();
         public Task<CourseInstanceModel> GetById(int id);
+        public Task<IEnumerable<CourseInstanceModel>> GetBySemesterYear(string semester, int year);
         public Task<int> Insert(CourseInstanceModel courseInstance);
         public Task<int> Update(CourseInstanceModel courseInstance);
     }
@@ -51,6 +52,11 @@ namespace WebAPI.Services
         public async Task<CourseInstanceModel> GetById(int id)
         {
             return await _dbContext.CourseInstance.FirstOrDefaultAsync(x => x.InstanceId == id);
+        }
+
+        public async Task<IEnumerable<CourseInstanceModel>> GetBySemesterYear(string semester, int year)
+        {
+            return (await _dbContext.CourseInstance.ToListAsync()).Where(x => x.Semester == semester && x.Year == year);
         }
 
         public async Task<int> Insert(CourseInstanceModel courseInstance)

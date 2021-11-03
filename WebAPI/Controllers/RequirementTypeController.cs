@@ -27,7 +27,7 @@ namespace WebAPI.Controllers
             return await _service.GetAll();
         }
 
-        [HttpGet("{type}", Name = "GetByRequirementTypeType")]
+        [HttpGet("{type}", Name = "GetRequirementTypeByRequirementType")]
         public async Task<ActionResult<RequirementTypeModel>> GetByType(int type)
         {
             var result = await _service.GetByType(type);

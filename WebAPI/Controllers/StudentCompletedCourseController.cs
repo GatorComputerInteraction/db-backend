@@ -28,7 +28,7 @@ namespace WebAPI.Controllers
         }
 
         // <api-root-path>/degreecourse/id?ufId=123&courseId=123
-        [HttpGet("{id}", Name = "GetByUfAndCourseIds")]
+        [HttpGet("{id}", Name = "GetStudentCompletedCourseByUfAndCourseIds")]
         public async Task<ActionResult<StudentCompletedCourseModel>> GetByIds(int ufId, int courseId)
         {
             var result = await _service.GetById(ufId, courseId);

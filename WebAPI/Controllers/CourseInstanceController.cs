@@ -37,6 +37,16 @@ namespace WebAPI.Controllers
                 return NotFound();
         }
 
+        [HttpGet("{semester}/{year}", Name ="GetBySemesterYear")]
+        public async Task<ActionResult<CourseInstanceModel>> GetBySemesterYear(string semester, int year)
+        {
+            var result = await _service.GetBySemesterYear(semester, year);
+            if (result != default)
+                return Ok(result);
+            else
+                return NotFound();
+        }
+
         [HttpPost]
         public async Task<ActionResult<CourseInstanceModel>> Insert(CourseInstanceModel dto)
         {

@@ -27,7 +27,7 @@ namespace WebAPI.Controllers
             return await _service.GetAll();
         }
 
-        [HttpGet("{id}", Name = "GetByCourseId")]
+        [HttpGet("{id}", Name = "GetCourseByCourseId")]
         public async Task<ActionResult<CourseModel>> GetById(int id)
         {
             var result = await _service.GetById(id);
