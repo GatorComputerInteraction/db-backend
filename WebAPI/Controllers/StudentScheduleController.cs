@@ -28,10 +28,15 @@ namespace WebAPI.Controllers
         }
 
         // <api-root-path>/degreecourse/id?ufId=123&instanceId=123
-        [HttpGet("{id}", Name = "GetStudentScheduleByUfAndInstanceIds")]
-        public async Task<ActionResult<StudentScheduleModel>> GetByIds(int ufId, int instanceId)
+        [HttpGet("{ufId}", Name = "GetStudentScheduleByUfAndInstanceIds")]
+        public async Task<ActionResult<StudentScheduleModel>> GetByIds(int ufId, [FromQuery]int? instanceId)
         {
-            var result = await _service.GetById(ufId, instanceId);
+            IEnumerable<StudentScheduleModel> result;
+            if (instanceId.HasValue)
+                result = new StudentScheduleModel[] { await _service.GetByIds(ufId, instanceId.Value) };
+            else
+                result = await _service.GetById(ufId);
+
             if (result != default)
                 return Ok(result);
             else
@@ -70,7 +75,7 @@ namespace WebAPI.Controllers
 
         // <api-root-path>/degreecourse/<id>?ufId=123&instanceId=123
 
-        [HttpDelete("{id}")]
+        [HttpDelete("{ufId}")]
         public async Task<ActionResult<StudentScheduleModel>> Delete(int ufId, int instanceId)
         {
             var result = await _service.Delete(ufId, instanceId);

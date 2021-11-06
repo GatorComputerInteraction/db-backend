@@ -13,8 +13,6 @@ namespace WebAPI
 {
     public class Startup
     {
-        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
-
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -26,14 +24,12 @@ namespace WebAPI
         public void ConfigureServices(IServiceCollection services)
         {
             // add cors
-            services.AddCors(options =>
+            services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
             {
-                options.AddPolicy(name: MyAllowSpecificOrigins,
-                  builder =>
-                  {
-                      builder.WithOrigins("http://localhost:8080");
-                  });
-            });
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            }));
 
             // add db connection
             if (Configuration.GetValue<string>("DbConnectionString") != null) {
@@ -84,7 +80,7 @@ namespace WebAPI
             app.UseRouting();
 
             // use cors
-            app.UseCors(MyAllowSpecificOrigins);
+            app.UseCors("MyPolicy");
 
             app.UseAuthorization();
 
