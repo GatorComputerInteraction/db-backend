@@ -24,7 +24,7 @@ namespace WebAPI
         public void ConfigureServices(IServiceCollection services)
         {
             // add cors
-            services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+            services.AddCors(o => o.AddDefaultPolicy(builder =>
             {
                 builder.AllowAnyOrigin()
                        .AllowAnyMethod()
@@ -80,7 +80,7 @@ namespace WebAPI
             app.UseRouting();
 
             // use cors
-            app.UseCors("MyPolicy");
+            app.UseCors();
 
             app.UseAuthorization();
 
