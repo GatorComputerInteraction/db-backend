@@ -18,5 +18,8 @@ namespace WebAPI.Models
         [Required]
         [Column("credits")]
         public int Credits { get; set; }
+
+        [Column("friendlyname")]
+        public string FriendlyName { get; set; }
     }
 }
