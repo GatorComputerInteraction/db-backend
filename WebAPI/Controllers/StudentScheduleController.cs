@@ -53,7 +53,7 @@ namespace WebAPI.Controllers
 
             var id = await _service.Insert(dto);
             if (id != default)
-                return CreatedAtRoute("FindOne", new { UfId = id }, dto);
+                return Ok(dto);
             else
                 return BadRequest();
         }
